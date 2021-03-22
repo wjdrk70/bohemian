@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from '../typeorm/entities/User';
-import { CreateUserInput, LoginInput } from './dto/input.dto';
+import { CreateUserInput, CreateUserOutput, LoginInput, LoginOutput,  } from './dto/input.dto';
 
 import { UsersService } from './users.service';
 
@@ -12,8 +12,8 @@ export class UsersResolver {
   //   getUser(@Args('id',{type:()=>Int}) id:number):Promise<Users>{
   //     return this.usersService.getAllUsers(id);
   //   }
-  @Mutation((returns) => String)
-  async login(@Args() loginInput: LoginInput): Promise<string> {
+  @Mutation((returns) => LoginOutput)
+  async login(@Args() loginInput: LoginInput): Promise<LoginOutput> {
     return this.usersService.login(loginInput);
   }
 
@@ -22,8 +22,8 @@ export class UsersResolver {
     return this.usersService.getAllUsers();
   }
 
-  @Mutation((returns) => User)
-  async registerUser(@Args() createUserInput: CreateUserInput): Promise<User> {
+  @Mutation((returns) => CreateUserOutput)
+  async registerUser(@Args() createUserInput: CreateUserInput): Promise<CreateUserOutput> {
     return this.usersService.registerUser(createUserInput);
   }
 }
