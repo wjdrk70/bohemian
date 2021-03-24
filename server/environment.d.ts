@@ -1,3 +1,5 @@
+import { Logger } from "@nestjs/common";
+
 declare namespace NodeJS {
   export interface ProcessEnv {
     MYSQL_DB_HOST?: string;
@@ -9,5 +11,6 @@ declare namespace NodeJS {
     PORT?: string;
     ENVIRONMENT: Environment;
   }
+
   export type Environment = "DEVELOPMENT" | "PRODUCTION" | "TEST";
 }
